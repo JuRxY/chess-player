@@ -1,0 +1,39 @@
+MODULE SocketModule
+
+    VAR socketdev socket;   // Declare a socket device
+    VAR string buffer;      // Buffer to store received data
+
+    ! Funkcija za odpiranje socketa
+    PROC OpenSocket()
+        Open socket\Port:=65432;  // odpremo socket na portu 65432
+        IF IOStatus(socket) = 0 THEN
+            TPWrite "Socket opened successfully";
+        ELSE
+            TPWrite "Failed to open socket";
+        ENDIF
+    ENDPROC
+
+    ! Funkcija za pošiljanje podatkov
+    PROC SendData(data STRING)
+        Write socket, data;
+        TPWrite "Data sent: " + data;
+    ENDPROC
+
+    ! Funkcija za prejemanje podatkov
+    PROC ReceiveData()
+        Read socket, buffer;
+        TPWrite "Data received: " + buffer;
+    ENDPROC
+
+    ! Funkcija za zapiranje socketa
+    PROC CloseSocket()
+        Close socket;
+        TPWrite "Socket closed";
+    ENDPROC
+
+    ! Main procedure
+    PROC Main()
+        // HANDLE SOCKET COMMUNICATION HERE
+    ENDPROC
+
+ENDMODULE
